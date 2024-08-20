@@ -14,7 +14,7 @@ public class ModuloConexao {
 
     //Método por conectar com o BD
     public static Connection conector() {
-        java.sql.Connection conexao = null;
+        Connection conexao = null;
         // Chama o driver de conexao - Biblioteca
         String driver = "com.mysql.cj.jdbc.Driver";
         // Armazenando info referente ao BD
