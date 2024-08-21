@@ -24,13 +24,16 @@ public class TelaLogin extends javax.swing.JFrame {
             //Preparação a consulta no BD em função na digitação (Usuario e Senha)
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtUsuario.getText());
-            pst.setString(2, txtSenha.getText());
+            String captura = new String(txtSenha.getPassword());
+            pst.setString(2, captura);
             // Executa a query
             rs = pst.executeQuery();
             // Se existir usuario e senha
             if (rs.next()) {
                 TelaPrincipal principal = new TelaPrincipal();
                 principal.setVisible(true);
+                this.dispose();
+                conexao.close();
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário e/ou senha inválido(s)!");
             }
