@@ -30,10 +30,18 @@ public class TelaLogin extends javax.swing.JFrame {
             rs = pst.executeQuery();
             // Se existir usuario e senha
             if (rs.next()) {
+                //Obtendo o conteudo do campo perfil
+                String perfil = rs.getString(6);
+                //System.out.println(perfil);
                 TelaPrincipal principal = new TelaPrincipal();
                 principal.setVisible(true);
+                // Tratamento do perfil
+                if (perfil.equals("admin")) {
+                    TelaPrincipal.MenuRel.setEnabled(true);
+                    TelaPrincipal.MenuCadUsu.setEnabled(true);
+                }
                 this.dispose();
-                conexao.close();
+                //conexao.close();
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário e/ou senha inválido(s)!");
             }

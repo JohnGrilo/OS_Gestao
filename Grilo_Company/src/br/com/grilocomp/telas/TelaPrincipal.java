@@ -83,11 +83,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         MenuCadUsu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK));
         MenuCadUsu.setText("Usuário");
+        MenuCadUsu.setEnabled(false);
         MenuCad.add(MenuCadUsu);
 
         Menu.add(MenuCad);
 
         MenuRel.setText("Relatório");
+        MenuRel.setEnabled(false);
 
         MenuRelServ.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
         MenuRelServ.setText("Serviços");
@@ -217,12 +219,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MenuCad;
     private javax.swing.JMenuItem MenuCadCli;
     private javax.swing.JMenuItem MenuCadOs;
-    private javax.swing.JMenuItem MenuCadUsu;
+    public static javax.swing.JMenuItem MenuCadUsu;
     private javax.swing.JMenu MenuOp;
     private javax.swing.JMenuItem MenuOpSair;
-    private javax.swing.JMenu MenuRel;
+    public static javax.swing.JMenu MenuRel;
     private javax.swing.JMenuItem MenuRelServ;
     private javax.swing.JLabel lblData;
-    private javax.swing.JLabel lblUsuario;
+    public static javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables
 }
