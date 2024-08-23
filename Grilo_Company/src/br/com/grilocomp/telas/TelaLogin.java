@@ -6,6 +6,7 @@ package br.com.grilocomp.telas;
 
 import java.sql.*;
 import br.com.grilocomp.dal.ModuloConexao;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,10 +36,12 @@ public class TelaLogin extends javax.swing.JFrame {
                 //System.out.println(perfil);
                 TelaPrincipal principal = new TelaPrincipal();
                 principal.setVisible(true);
+                TelaPrincipal.lblUsuario.setText(rs.getString(2));
                 // Tratamento do perfil
                 if (perfil.equals("admin")) {
-                    TelaPrincipal.MenuRel.setEnabled(true);
-                    TelaPrincipal.MenuCadUsu.setEnabled(true);
+                    TelaPrincipal.menuRel.setEnabled(true);
+                    TelaPrincipal.menuCadUsu.setEnabled(true);
+                    TelaPrincipal.lblUsuario.setForeground(Color.BLUE);
                 }
                 this.dispose();
                 //conexao.close();
