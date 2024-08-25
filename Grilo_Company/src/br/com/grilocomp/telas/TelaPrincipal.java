@@ -187,7 +187,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // Abrir tela usuario no desktop (TelaPrincipal)
         TelaUsuario usuario = new TelaUsuario();
         usuario.setVisible(true);
-        
+        desktop.add(usuario);
     }//GEN-LAST:event_menuCadUsuActionPerformed
 
     /**
