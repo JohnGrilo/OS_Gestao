@@ -25,7 +25,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         conexao = ModuloConexao.conector();
     }
 
-    private void InfoTela() { //Metodo para trazer informações de quantidade de usuarios cadastrados e ultimo IDUser utilizado
+    private void infoTela() { //Metodo para trazer informações de quantidade de usuarios cadastrados e ultimo IDUser utilizado
         String info = "Select count(*) from tbusuario;";
 
         try {
@@ -110,11 +110,13 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
             pst.setString(5, txtUsuSenha.getText());
             pst.setString(6, cboUsuPerfil.getSelectedItem().toString());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        InfoTela();
+        infoTela();
+        limpar();
     }
 
     private void limpar() {
@@ -377,7 +379,8 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnUsuReadActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        InfoTela();
+        limpar();
+        infoTela();
         click();
 
     }//GEN-LAST:event_formInternalFrameOpened
