@@ -25,6 +25,51 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         conexao = ModuloConexao.conector();
     }
 
+    private void InfoTela() {
+        String info = "Select count(*) from tbusuario;";
+
+        try {
+            pst = conexao.prepareStatement(info);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                System.out.println(count);
+                txtUsuQuant.setText(String.valueOf(count));
+            }
+        } catch (Exception e) {
+        }
+
+        String ult = "Select * from tbusuario order by iduser desc limit 1";
+
+        try {
+            pst = conexao.prepareStatement(ult);
+            //pst.setString(1, txtUsuId.getText());
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                int ultm = rs.getInt(1);
+                System.out.println(ultm);
+                txtUsuUlt.setText(String.valueOf(ultm));
+            }
+        } catch (Exception e) {
+        }
+
+    }
+
+    private void click() {
+        try {
+            Robot robot = new Robot();
+
+            //Define as coordenadas onde o clique será simulado
+            int x = 500;
+            int y = 500;
+
+            //Simula o clique do mouse
+            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);  // Pressiona o botão esquerdo
+            robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);  // Solta o botão esquerdo
+        } catch (Exception e) {
+        }
+    }
+
     private void consultar() {
         String sql = "select * from tbusuario where iduser = ? ";
         try {
@@ -69,6 +114,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        InfoTela();
     }
 
     /**
@@ -312,45 +358,9 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnUsuReadActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        String sql = "Select count(*) from tbusuario;";
+        InfoTela();
+        click();
 
-        try {
-            pst = conexao.prepareStatement(sql);
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                int count = rs.getInt(1);
-                System.out.println(count);
-                txtUsuQuant.setText(String.valueOf(count));
-            }
-        } catch (Exception e) {
-        }
-
-        String sql2 = "Select * from tbusuario order by iduser desc limit 1";
-
-        try {
-            pst = conexao.prepareStatement(sql2);
-            //pst.setString(1, txtUsuId.getText());
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                int ultm = rs.getInt(1);
-                System.out.println(ultm);
-                txtUsuUlt.setText(String.valueOf(ultm));
-            }
-        } catch (Exception e) {
-        }
-        try {
-            Robot robot = new Robot();
-
-            // Define as coordenadas onde o clique será simulado
-            int x = 500;
-            int y = 500;
-
-            // Simula o clique do mouse
-            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);  // Pressiona o botão esquerdo
-            robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);  // Solta o botão esquerdo
-        } catch (Exception e) {
-        }
-       
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void btnUsuCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuCreateActionPerformed
