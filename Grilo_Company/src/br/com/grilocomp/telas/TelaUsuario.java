@@ -25,7 +25,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         conexao = ModuloConexao.conector();
     }
 
-    private void InfoTela() {
+    private void InfoTela() { //Metodo para trazer informações de quantidade de usuarios cadastrados e ultimo IDUser utilizado
         String info = "Select count(*) from tbusuario;";
 
         try {
@@ -55,7 +55,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
 
     }
 
-    private void click() {
+    private void click() { //Metodo para dar um clique na tela
         try {
             Robot robot = new Robot();
 
