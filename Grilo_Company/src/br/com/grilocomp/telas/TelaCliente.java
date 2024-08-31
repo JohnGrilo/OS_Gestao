@@ -6,6 +6,8 @@ package br.com.grilocomp.telas;
 
 import java.sql.*;
 import br.com.grilocomp.dal.ModuloConexao;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +26,21 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     public TelaCliente() {
         initComponents();
         conexao = ModuloConexao.conector();
+    }
+    
+        private void click() { //Metodo para dar um clique na tela
+        try {
+            Robot robot = new Robot();
+
+            //Define as coordenadas onde o clique será simulado
+            int x = 500;
+            int y = 500;
+
+            //Simula o clique do mouse
+            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);  // Pressiona o botão esquerdo
+            robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);  // Solta o botão esquerdo
+        } catch (Exception e) {
+        }
     }
 
     private void adicionar() {
@@ -85,6 +102,23 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setTitle("Clientes");
         setPreferredSize(new java.awt.Dimension(690, 600));
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         jLabel9.setText("* Campos Obrigatórios");
@@ -223,6 +257,10 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
         setBounds(0, 0, 600, 585);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        click();
+    }//GEN-LAST:event_formInternalFrameOpened
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
