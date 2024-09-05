@@ -7,6 +7,7 @@ package br.com.grilocomp.telas;
 import java.sql.*;
 import br.com.grilocomp.dal.ModuloConexao;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +19,13 @@ public class TelaLogin extends javax.swing.JFrame {
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-
+    
+    /*public void keyPressed(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            logar(); // Chama o método logar quando a tecla Enter é pressionada
+        }
+    }
+    */
     public void logar() {
         String sql = "select * from tbusuario where login=? and senha=?";
         try {

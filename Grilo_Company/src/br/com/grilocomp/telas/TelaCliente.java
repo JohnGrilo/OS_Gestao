@@ -84,11 +84,12 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }
 
     private void pesquisar() {
-        String sql = "select * from tbcliente where nomecli like ?";
+        String sql = "select * from tbcliente where nomecli like ? or fonecli like ?";
 
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, "%" + txtCliPesq.getText() + "%");
+            pst.setString(2, "%" + txtCliPesq.getText() + "%");
             rs = pst.executeQuery();
 
             tblClientes.setModel(DbUtils.resultSetToTableModel(rs));
@@ -101,6 +102,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     public void escolher() {
         int escolha = tblClientes.getSelectedRow();
+        txtCliId.setText(tblClientes.getModel().getValueAt(escolha, 0).toString());
         txtCliNome.setText(tblClientes.getModel().getValueAt(escolha, 1).toString());
         txtCliEnd.setText(tblClientes.getModel().getValueAt(escolha, 2).toString());
         txtCliTel.setText(tblClientes.getModel().getValueAt(escolha, 3).toString());
@@ -108,7 +110,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }
     
         private void alterar() {
-        String sql = "update tbcliente set nomecli = ?, endcli = ?, fonecli = ?, emailcli = ? where nomecli = ?";
+        String sql = "update tbcliente set nomecli = ?, endcli = ?, fonecli = ?, emailcli = ? where idcli = ?";
 
         if (txtCliNome.getText().isEmpty() || (txtCliTel.getText().isEmpty())) {
 
@@ -122,11 +124,12 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 pst.setString(2, txtCliEnd.getText());
                 pst.setString(3, txtCliTel.getText());
                 pst.setString(4, txtCliEm.getText());
-                pst.setString(5, txtCliNome.getText());
+                pst.setString(5, txtCliId.getText());
 
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!");
                 limpar();
+                pesquisar();
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
@@ -219,6 +222,11 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         btnCliEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCliEdit.setOpaque(true);
         btnCliEdit.setPreferredSize(new java.awt.Dimension(60, 60));
+        btnCliEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCliEditActionPerformed(evt);
+            }
+        });
 
         btnCliDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/grilocomp/icones/delete.png"))); // NOI18N
         btnCliDelete.setToolTipText("Deletar");
@@ -267,7 +275,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-        jLabel6.setText("ID");
+        jLabel6.setText("ID Cliente");
 
         txtCliId.setEnabled(false);
 
@@ -296,7 +304,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtCliTel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtCliId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtCliId, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,6 +377,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         click();
+        pesquisar();
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void btnCliCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCliCreateActionPerformed
@@ -387,6 +396,10 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     private void btnCliLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCliLimparActionPerformed
         limpar();
     }//GEN-LAST:event_btnCliLimparActionPerformed
+
+    private void btnCliEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCliEditActionPerformed
+        alterar();
+    }//GEN-LAST:event_btnCliEditActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

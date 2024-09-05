@@ -58,7 +58,7 @@
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="txtCliTel" min="-2" pref="240" max="-2" attributes="0"/>
-                                          <Component id="txtCliId" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="txtCliId" min="-2" pref="72" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -238,6 +238,9 @@
           <Dimension value="[60, 60]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCliEditActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCliDelete">
       <Properties>
@@ -320,7 +323,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="ID"/>
+        <Property name="text" type="java.lang.String" value="ID Cliente"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCliId">
