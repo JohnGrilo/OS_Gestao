@@ -107,6 +107,8 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         txtCliEnd.setText(tblClientes.getModel().getValueAt(escolha, 2).toString());
         txtCliTel.setText(tblClientes.getModel().getValueAt(escolha, 3).toString());
         txtCliEm.setText(tblClientes.getModel().getValueAt(escolha, 4).toString());
+        
+        btnCliCreate.setEnabled(false);
     }
     
         private void alterar() {
