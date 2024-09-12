@@ -53,7 +53,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         txtCliTel.setText(null);
         txtCliEm.setText(null);
         txtCliId.setText(null);
-        
+
         btnCliCreate.setEnabled(true);
 
     }
@@ -87,7 +87,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }
 
     private void pesquisar() {
-        String sql = "select * from tbcliente where nomecli like ? or fonecli like ?";
+        String sql = "select idcli as ID, nomecli as Nome, endcli as Endereço, fonecli as Fone, emailcli as Email from tbcliente where nomecli like ? or fonecli like ?";
 
         try {
             pst = conexao.prepareStatement(sql);
@@ -110,11 +110,11 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         txtCliEnd.setText(tblClientes.getModel().getValueAt(escolha, 2).toString());
         txtCliTel.setText(tblClientes.getModel().getValueAt(escolha, 3).toString());
         txtCliEm.setText(tblClientes.getModel().getValueAt(escolha, 4).toString());
-        
+
         btnCliCreate.setEnabled(false);
     }
-    
-        private void alterar() {
+
+    private void alterar() {
         String sql = "update tbcliente set nomecli = ?, endcli = ?, fonecli = ?, emailcli = ? where idcli = ?";
 
         if (txtCliNome.getText().isEmpty() || (txtCliTel.getText().isEmpty())) {
@@ -141,22 +141,22 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             }
         }
     }
-        
-      private void deletar() {
+
+    private void deletar() {
 
         int confirma = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja deletar o cliente selecionado?", "Atenção", JOptionPane.YES_NO_OPTION);
 
         if (confirma == JOptionPane.YES_OPTION) {
             String sql = "delete from tbcliente where idcli = ?";
-            
+
             try {
                 pst = conexao.prepareStatement(sql);
                 pst.setString(1, txtCliId.getText());
-                
+
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Cliente deletado com sucesso!");
                 limpar();
-                
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
             }
@@ -275,17 +275,24 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/grilocomp/icones/loupe.png"))); // NOI18N
         jLabel5.setToolTipText("Buscar");
 
+        tblClientes = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nome", "Endereço", "Fone", "Email"
             }
         ));
+        tblClientes.setFocusable(false);
+        tblClientes.getTableHeader().setReorderingAllowed(false);
         tblClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblClientesMouseClicked(evt);
@@ -408,7 +415,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         click();
-        
+
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void btnCliCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCliCreateActionPerformed
@@ -433,7 +440,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     private void btnCliEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCliEditActionPerformed
         alterar();
         pesquisar();
-        
+
     }//GEN-LAST:event_btnCliEditActionPerformed
 
     private void btnCliDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCliDeleteActionPerformed
