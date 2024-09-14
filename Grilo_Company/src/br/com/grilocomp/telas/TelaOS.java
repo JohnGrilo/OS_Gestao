@@ -7,18 +7,26 @@ package br.com.grilocomp.telas;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import javax.swing.JOptionPane;
+import java.sql.*;
+import br.com.grilocomp.dal.ModuloConexao;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
  * @author 55349
  */
 public class TelaOS extends javax.swing.JInternalFrame {
-
+    
+    Connection conexao = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    
     /**
      * Creates new form TelaOS
      */
     public TelaOS() {
         initComponents();
+        conexao = ModuloConexao.conector();
     }
     
         private void click() { //Metodo para dar um clique na tela
