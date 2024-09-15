@@ -264,6 +264,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Or&#xe7;amento"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtOrcActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtOs">
           <Properties>
@@ -272,6 +275,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Ordem de Servi&#xe7;o"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtOsActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -290,12 +296,12 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="7">
-            <StringItem index="0" value="Entrega OK"/>
-            <StringItem index="1" value="Or&#xe7;amento - Reprovado"/>
-            <StringItem index="2" value="Aguardando - Aprova&#xe7;&#xe3;o"/>
-            <StringItem index="3" value="Aguardando - Pe&#xe7;as"/>
-            <StringItem index="4" value="Abandonado"/>
-            <StringItem index="5" value="Na bancada"/>
+            <StringItem index="0" value="Em an&#xe1;lise"/>
+            <StringItem index="1" value="Entrega OK"/>
+            <StringItem index="2" value="Or&#xe7;amento - Reprovado"/>
+            <StringItem index="3" value="Aguardando - Aprova&#xe7;&#xe3;o"/>
+            <StringItem index="4" value="Aguardando - Pe&#xe7;as"/>
+            <StringItem index="5" value="Abandonado"/>
             <StringItem index="6" value="Retorno"/>
           </StringArray>
         </Property>
@@ -452,6 +458,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtOsValor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnOsAdicionar">
       <Properties>
@@ -470,6 +479,9 @@
           <Dimension value="[60, 60]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOsAdicionarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnOsPesquisar">
       <Properties>
