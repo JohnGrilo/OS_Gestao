@@ -161,6 +161,43 @@ public class TelaOS extends javax.swing.JInternalFrame {
         }
     }
 
+    private void alterar_os() {
+        String sql = "update tbos set tipo = ?, situacao = ?, equipamento = ?, defeito = ?, servico = ?, tecnico = ?, valor = ? where os = ?";
+
+        if (txtCliId.getText().isEmpty() || (txtOsEquip.getText().isEmpty()) || (txtOsDef.getText().isEmpty())) {
+
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios!");
+
+        } else {
+
+            try {
+
+                pst = conexao.prepareStatement(sql);
+                pst.setString(1, tipo);
+                pst.setString(2, cboOsSit.getSelectedItem().toString());
+                pst.setString(3, txtOsEquip.getText());
+                pst.setString(4, txtOsDef.getText());
+                pst.setString(5, txtOsServ.getText());
+                pst.setString(6, txtOsTec.getText());
+                pst.setString(7, txtOsValor.getText().replace(",", "."));
+                pst.setString(8, txtOs.getText());
+
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "OS alterada com sucesso!");
+                limpar();
+                txtOs.setText(null);
+                txtData.setText(null);
+
+                btnOsAdicionar.setEnabled(true);
+                txtCliPesquisar.setEnabled(true);
+                tblClientes.setVisible(true);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -420,6 +457,11 @@ public class TelaOS extends javax.swing.JInternalFrame {
         btnOsAlterar.setMinimumSize(new java.awt.Dimension(48, 48));
         btnOsAlterar.setOpaque(true);
         btnOsAlterar.setPreferredSize(new java.awt.Dimension(60, 60));
+        btnOsAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOsAlterarActionPerformed(evt);
+            }
+        });
 
         btnOsDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/grilocomp/icones/delete.png"))); // NOI18N
         btnOsDeletar.setToolTipText("Deletar OS");
@@ -573,6 +615,11 @@ public class TelaOS extends javax.swing.JInternalFrame {
         // chamando o metodo pesquisar os
         pesquisar_os();
     }//GEN-LAST:event_btnOsPesquisarActionPerformed
+
+    private void btnOsAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOsAlterarActionPerformed
+        // chamando o metodo alterar_os
+        alterar_os();
+    }//GEN-LAST:event_btnOsAlterarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
