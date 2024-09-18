@@ -145,13 +145,19 @@ public class TelaOS extends javax.swing.JInternalFrame {
                 txtOsValor.setText(rs.getString(9));
                 txtCliId.setText(rs.getString(10));
 
+                btnOsAdicionar.setEnabled(false);
+                txtCliPesquisar.setEnabled(false);
+                tblClientes.setVisible(false);
+
             } else {
                 JOptionPane.showMessageDialog(null, "OS não encontrada.");
 
             }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        } catch (java.sql.SQLSyntaxErrorException e) {
+            JOptionPane.showMessageDialog(null, "OS Inválida!");
+            //System.out.println(e);
+        } catch (Exception e2) {
+            JOptionPane.showMessageDialog(null, e2);
         }
     }
 
