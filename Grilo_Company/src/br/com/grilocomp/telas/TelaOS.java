@@ -198,6 +198,34 @@ public class TelaOS extends javax.swing.JInternalFrame {
         }
     }
 
+    private void deletar_os() {
+
+        int confirma = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja deletar a OS selecionada?", "Atenção", JOptionPane.YES_NO_OPTION);
+
+        if (confirma == JOptionPane.YES_OPTION) {
+            String sql = "delete from tbos where os = ?";
+
+            try {
+                pst = conexao.prepareStatement(sql);
+                pst.setString(1, txtOs.getText());
+
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "OS deletada com sucesso!");
+                limpar();
+                txtOs.setText(null);
+                txtData.setText(null);
+
+                btnOsAdicionar.setEnabled(true);
+                txtCliPesquisar.setEnabled(true);
+                tblClientes.setVisible(true);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -470,6 +498,11 @@ public class TelaOS extends javax.swing.JInternalFrame {
         btnOsDeletar.setMinimumSize(new java.awt.Dimension(48, 48));
         btnOsDeletar.setOpaque(true);
         btnOsDeletar.setPreferredSize(new java.awt.Dimension(60, 60));
+        btnOsDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOsDeletarActionPerformed(evt);
+            }
+        });
 
         btnOsImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/grilocomp/icones/print.png"))); // NOI18N
         btnOsImprimir.setToolTipText("Imprimir OS");
@@ -620,6 +653,11 @@ public class TelaOS extends javax.swing.JInternalFrame {
         // chamando o metodo alterar_os
         alterar_os();
     }//GEN-LAST:event_btnOsAlterarActionPerformed
+
+    private void btnOsDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOsDeletarActionPerformed
+        // chamando o metodo deletar_os
+        deletar_os();
+    }//GEN-LAST:event_btnOsDeletarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
