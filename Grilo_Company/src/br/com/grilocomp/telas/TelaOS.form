@@ -110,7 +110,7 @@
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace pref="14" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -289,7 +289,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Situa&#xe7;&#xe3;o"/>
+        <Property name="text" type="java.lang.String" value="* Situa&#xe7;&#xe3;o"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cboOsSit">
@@ -298,14 +298,15 @@
           <Font name="Calibri" size="12" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
-            <StringItem index="0" value="Em an&#xe1;lise"/>
-            <StringItem index="1" value="Entrega OK"/>
-            <StringItem index="2" value="Or&#xe7;amento - Reprovado"/>
-            <StringItem index="3" value="Aguardando - Aprova&#xe7;&#xe3;o"/>
-            <StringItem index="4" value="Aguardando - Pe&#xe7;as"/>
-            <StringItem index="5" value="Abandonado"/>
-            <StringItem index="6" value="Retorno"/>
+          <StringArray count="8">
+            <StringItem index="0" value=" "/>
+            <StringItem index="1" value="Em an&#xe1;lise"/>
+            <StringItem index="2" value="Entrega OK"/>
+            <StringItem index="3" value="Or&#xe7;amento - Reprovado"/>
+            <StringItem index="4" value="Aguardando - Aprova&#xe7;&#xe3;o"/>
+            <StringItem index="5" value="Aguardando - Pe&#xe7;as"/>
+            <StringItem index="6" value="Abandonado"/>
+            <StringItem index="7" value="Retorno"/>
           </StringArray>
         </Property>
       </Properties>
@@ -519,6 +520,7 @@
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Hand Cursor"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[48, 48]"/>
         </Property>
@@ -543,6 +545,7 @@
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Hand Cursor"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[48, 48]"/>
         </Property>
@@ -567,6 +570,7 @@
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Hand Cursor"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[48, 48]"/>
         </Property>

@@ -9,6 +9,7 @@ import java.awt.event.InputEvent;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import br.com.grilocomp.dal.ModuloConexao;
+import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -55,6 +56,9 @@ public class TelaOS extends javax.swing.JInternalFrame {
         txtOsTec.setText(null);
         txtOsValor.setText(null);
         txtCliId.setText(null);
+        txtCliPesquisar.setText(null);
+        ((DefaultTableModel) tblClientes.getModel()).setRowCount(0);
+        
 
         //btnCliCreate.setEnabled(true);
     }
@@ -84,7 +88,7 @@ public class TelaOS extends javax.swing.JInternalFrame {
     private void emitir_os() {
         String sql = "insert into tbos (tipo,situacao,equipamento,defeito,servico,tecnico,valor,idcli) values (?,?,?,?,?,?,?,?)";
 
-        if (txtCliId.getText().isEmpty() || (txtOsEquip.getText().isEmpty()) || (txtOsDef.getText().isEmpty())) {
+        if (txtCliId.getText().isEmpty() || (txtOsEquip.getText().isEmpty()) || (txtOsDef.getText().isEmpty()) || cboOsSit.getSelectedItem().equals(" ")) {
 
             JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios!");
 
@@ -164,7 +168,7 @@ public class TelaOS extends javax.swing.JInternalFrame {
     private void alterar_os() {
         String sql = "update tbos set tipo = ?, situacao = ?, equipamento = ?, defeito = ?, servico = ?, tecnico = ?, valor = ? where os = ?";
 
-        if (txtCliId.getText().isEmpty() || (txtOsEquip.getText().isEmpty()) || (txtOsDef.getText().isEmpty())) {
+        if (txtCliId.getText().isEmpty() || (txtOsEquip.getText().isEmpty()) || (txtOsDef.getText().isEmpty()) || cboOsSit.getSelectedItem().equals(" ")) {
 
             JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios!");
 
@@ -366,10 +370,10 @@ public class TelaOS extends javax.swing.JInternalFrame {
         );
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-        jLabel3.setText("Situação");
+        jLabel3.setText("* Situação");
 
         cboOsSit.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        cboOsSit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em análise", "Entrega OK", "Orçamento - Reprovado", "Aguardando - Aprovação", "Aguardando - Peças", "Abandonado", "Retorno" }));
+        cboOsSit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Em análise", "Entrega OK", "Orçamento - Reprovado", "Aguardando - Aprovação", "Aguardando - Peças", "Abandonado", "Retorno" }));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente"));
 
@@ -481,6 +485,7 @@ public class TelaOS extends javax.swing.JInternalFrame {
         btnOsAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/grilocomp/icones/edit.png"))); // NOI18N
         btnOsAlterar.setToolTipText("Alterar OS");
         btnOsAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOsAlterar.setEnabled(false);
         btnOsAlterar.setMaximumSize(new java.awt.Dimension(48, 48));
         btnOsAlterar.setMinimumSize(new java.awt.Dimension(48, 48));
         btnOsAlterar.setOpaque(true);
@@ -494,6 +499,7 @@ public class TelaOS extends javax.swing.JInternalFrame {
         btnOsDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/grilocomp/icones/delete.png"))); // NOI18N
         btnOsDeletar.setToolTipText("Deletar OS");
         btnOsDeletar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOsDeletar.setEnabled(false);
         btnOsDeletar.setMaximumSize(new java.awt.Dimension(48, 48));
         btnOsDeletar.setMinimumSize(new java.awt.Dimension(48, 48));
         btnOsDeletar.setOpaque(true);
@@ -507,6 +513,7 @@ public class TelaOS extends javax.swing.JInternalFrame {
         btnOsImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/grilocomp/icones/print.png"))); // NOI18N
         btnOsImprimir.setToolTipText("Imprimir OS");
         btnOsImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOsImprimir.setEnabled(false);
         btnOsImprimir.setMaximumSize(new java.awt.Dimension(48, 48));
         btnOsImprimir.setMinimumSize(new java.awt.Dimension(48, 48));
         btnOsImprimir.setOpaque(true);
@@ -565,7 +572,7 @@ public class TelaOS extends javax.swing.JInternalFrame {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
