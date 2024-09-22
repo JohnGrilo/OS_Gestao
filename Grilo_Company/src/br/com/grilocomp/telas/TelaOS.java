@@ -50,6 +50,8 @@ public class TelaOS extends javax.swing.JInternalFrame {
 
     private void limpar() {
 
+        txtOs.setText(null);
+        txtData.setText(null);
         txtOsEquip.setText(null);
         txtOsDef.setText(null);
         txtOsServ.setText(null);
@@ -58,7 +60,15 @@ public class TelaOS extends javax.swing.JInternalFrame {
         txtCliId.setText(null);
         txtCliPesquisar.setText(null);
         ((DefaultTableModel) tblClientes.getModel()).setRowCount(0);
+        cboOsSit.setSelectedItem(" ");
+
+        btnOsAdicionar.setEnabled(true);
+        txtCliPesquisar.setEnabled(true);
+        tblClientes.setVisible(true);
         
+        btnOsAlterar.setEnabled(false);
+        btnOsDeletar.setEnabled(false);
+        btnOsImprimir.setEnabled(false);
 
         //btnCliCreate.setEnabled(true);
     }
@@ -108,7 +118,11 @@ public class TelaOS extends javax.swing.JInternalFrame {
 
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "OS emitida com sucesso!");
-                limpar();
+                //limpar();
+                
+                btnOsAdicionar.setEnabled(false);
+                btnOsPesquisar.setEnabled(false);
+                btnOsImprimir.setEnabled(true);
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
