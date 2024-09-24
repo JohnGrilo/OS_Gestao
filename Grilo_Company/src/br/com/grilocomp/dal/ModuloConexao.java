@@ -18,9 +18,9 @@ public class ModuloConexao {
         // Chama o driver de conexao - Biblioteca
         String driver = "com.mysql.cj.jdbc.Driver";
         // Armazenando info referente ao BD
-        String url = "jdbc:mysql://localhost:3306/dbgrilocomp";
-        String user = "root";
-        String password = "grilo1234";
+        String url = "jdbc:mysql://localhost:3306/dbgrilocomp?characterEncoding=utf-8";
+        String user = "dba";
+        String password = "Grilo1234";
         // Conectando com o BD
         try {
             Class.forName(driver);
