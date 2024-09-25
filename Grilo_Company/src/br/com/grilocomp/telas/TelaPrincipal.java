@@ -4,21 +4,26 @@
  */
 package br.com.grilocomp.telas;
 
+import br.com.grilocomp.dal.ModuloConexao;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import java.sql.*;
 
 /**
  *
  * @author 55349
  */
 public class TelaPrincipal extends javax.swing.JFrame {
+    
+    Connection conexao = null;
 
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
+        conexao = ModuloConexao.conector();
     }
 
     /**
@@ -39,6 +44,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCadOs = new javax.swing.JMenuItem();
         menuCadUsu = new javax.swing.JMenuItem();
         menuRel = new javax.swing.JMenu();
+        menRelCli = new javax.swing.JMenuItem();
         menuRelServ = new javax.swing.JMenuItem();
         menuAju = new javax.swing.JMenu();
         menuAjuSob = new javax.swing.JMenuItem();
@@ -107,6 +113,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuRel.setText("Relatório");
         menuRel.setEnabled(false);
+        menuRel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRelActionPerformed(evt);
+            }
+        });
+
+        menRelCli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menRelCli.setText("Clientes");
+        menRelCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menRelCliActionPerformed(evt);
+            }
+        });
+        menuRel.add(menRelCli);
 
         menuRelServ.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
         menuRelServ.setText("Serviços");
@@ -214,6 +234,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         desktop.add(os);
     }//GEN-LAST:event_menuCadOsActionPerformed
 
+    private void menuRelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuRelActionPerformed
+
+    private void menRelCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menRelCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menRelCliActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -251,6 +279,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel lblData;
     public static javax.swing.JLabel lblUsuario;
+    private javax.swing.JMenuItem menRelCli;
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenu menuAju;
     private javax.swing.JMenuItem menuAjuSob;
