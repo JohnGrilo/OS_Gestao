@@ -9,13 +9,16 @@ import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
  * @author 55349
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-    
+
     Connection conexao = null;
 
     /**
@@ -201,8 +204,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void menuOpSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOpSairActionPerformed
         // Exibir uma caixa de dialogo
-        int sair = JOptionPane.showConfirmDialog(null,"Deseja sair?","Atenção!",JOptionPane.YES_NO_OPTION);
-        if (sair == JOptionPane.YES_OPTION){
+        int sair = JOptionPane.showConfirmDialog(null, "Deseja sair?", "Atenção!", JOptionPane.YES_NO_OPTION);
+        if (sair == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_menuOpSairActionPerformed
@@ -240,6 +243,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void menRelCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menRelCliActionPerformed
         // TODO add your handling code here:
+        int confirma = JOptionPane.showConfirmDialog(null, "Confirma a impressão do relatório?", "Atenção", JOptionPane.YES_NO_OPTION);
+        
+        if (confirma == JOptionPane.YES_OPTION) {
+            
+            try {
+                
+                JasperPrint print = JasperFillManager.fillReport("C:/Users/55349/Relatorios/clientes.jasper", null,conexao);
+                JasperViewer.viewReport(print, false);
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+
+        }
     }//GEN-LAST:event_menRelCliActionPerformed
 
     /**
