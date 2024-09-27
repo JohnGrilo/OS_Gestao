@@ -133,6 +133,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuRelServ.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
         menuRelServ.setText("Serviços");
+        menuRelServ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRelServActionPerformed(evt);
+            }
+        });
         menuRel.add(menuRelServ);
 
         menu.add(menuRel);
@@ -258,6 +263,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_menRelCliActionPerformed
+
+    private void menuRelServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelServActionPerformed
+        // TODO add your handling code here:
+        int confirma = JOptionPane.showConfirmDialog(null, "Confirma a impressão do relatório?", "Atenção", JOptionPane.YES_NO_OPTION);
+        
+        if (confirma == JOptionPane.YES_OPTION) {
+            
+            try {
+                
+                JasperPrint print = JasperFillManager.fillReport("C:/Users/55349/Relatorios/servicos.jasper", null,conexao);
+                JasperViewer.viewReport(print, false);
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+
+        }
+    }//GEN-LAST:event_menuRelServActionPerformed
 
     /**
      * @param args the command line arguments
