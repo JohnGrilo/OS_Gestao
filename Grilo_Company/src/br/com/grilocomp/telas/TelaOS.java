@@ -123,6 +123,8 @@ public class TelaOS extends javax.swing.JInternalFrame {
 
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "OS emitida com sucesso!");
+                
+                ultimo_id_os();
                 //limpar();
 
                 btnOsAdicionar.setEnabled(false);
@@ -271,6 +273,22 @@ public class TelaOS extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, e);
             }
 
+        }
+    }
+    
+    private void ultimo_id_os(){
+        String sql = "select max(os) from tbos";
+        
+        try {
+            pst = conexao.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()){
+                txtOs.setText(rs.getString(1));
+            }
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
 
