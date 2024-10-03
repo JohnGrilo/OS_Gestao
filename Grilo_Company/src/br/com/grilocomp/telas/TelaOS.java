@@ -9,8 +9,12 @@ import java.awt.event.InputEvent;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import br.com.grilocomp.dal.ModuloConexao;
+import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -248,6 +252,26 @@ public class TelaOS extends javax.swing.JInternalFrame {
             }
         }
 
+    }
+
+    private void imprimir_os() {
+
+        int confirma = JOptionPane.showConfirmDialog(null, "Confirma a impressão da OS?", "Atenção", JOptionPane.YES_NO_OPTION);
+
+        if (confirma == JOptionPane.YES_OPTION) {
+
+            try {
+                HashMap filtro = new HashMap();
+                filtro.put("os",Integer.parseInt(txtOs.getText()));
+                
+                JasperPrint print = JasperFillManager.fillReport("C:/Users/55349/Relatorios/OS.jasper", filtro, conexao);
+                JasperViewer.viewReport(print, false);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+
+        }
     }
 
     /**
@@ -538,6 +562,11 @@ public class TelaOS extends javax.swing.JInternalFrame {
         btnOsImprimir.setMinimumSize(new java.awt.Dimension(48, 48));
         btnOsImprimir.setOpaque(true);
         btnOsImprimir.setPreferredSize(new java.awt.Dimension(60, 60));
+        btnOsImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOsImprimirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -683,6 +712,10 @@ public class TelaOS extends javax.swing.JInternalFrame {
         // chamando o metodo deletar_os
         deletar_os();
     }//GEN-LAST:event_btnOsDeletarActionPerformed
+
+    private void btnOsImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOsImprimirActionPerformed
+        imprimir_os();
+    }//GEN-LAST:event_btnOsImprimirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
